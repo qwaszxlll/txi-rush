@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="txiRushApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>TXI Rush App 2014</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
+  <link rel="stylesheet" href="app.css"/>
+  <link rel="stylesheet" href="common/sidebar.css"/>
+  <link rel="stylesheet" href="common/animations.css"/>
+  <link rel="stylesheet" href="routes/events/events.css"/>
+  <link rel="stylesheet" href="routes/vanTracker/vanTracker.css"/>
+  <link rel="stylesheet" href="routes/brothers/brothers.css"/>
+  <link rel="stylesheet" href="routes/vanRequest/vanRequest.css"/>
+  <link rel="stylesheet" href="routes/driving/driving.css"/>
+  <link rel="stylesheet" href="routes/coordinate/coordinate.css"/>
+  <link rel="stylesheet" href="routes/me/me.css"/>
+</head>
+<body ng-controller="AppController">
+  <!-- SIDE BAR -->
+  <nav ng-show="showmenu" ng-class="{'sidebar visible': showmenu, 'sidebar hidden': !showmenu}" ng-cloak>
+    <a ng-click="toggleMenu()" href="#/events">Events</a>
+    <a ng-click="toggleMenu()" href="#/vantracker">Van Tracker</a>
+    <a ng-click="toggleMenu()" href="#/brothers">Brothers</a>
+    <a ng-click="toggleMenu()" href="#/me">Me</a>
+    <a ng-click="toggleMenu()" href="#/driving" ng-show="isBrother">Drive</a>
+    <a ng-click="toggleMenu()" href="#/coordinate" ng-show="isCoordinator">Coordinate</a>
+  </nav>
+  <img src="img/loading_wheel.gif" id="loader">
+
+  <!-- MAIN WINDOW -->
+  <div ng-class="{'slideAll': showmenu, 'all': !showmenu}">
+    <!-- NAV BAR -->
+    <div class="navbar" ng-cloak>
+        <img id="menubutton" ng-click="toggleMenu()" ng-show='!requesting' src="img/MenuButton.png">
+        <a href={{returnPath}} ng-click="back()" ng-cloak>
+            <img id="menubutton" ng-show='requesting' src="img/WhiteArrowRound.png">
+        </a>
+        <h1 class="title">{{$route.current.scope.pageName}}</h1>
+    </div>
+    <div ng-view class="window" ng-click="closeMenu()" ng-cloak></div>
+  </div>
+
+  <!-- In production use: -->
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+  <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
+<!--   // <script src="bower_components/angular/angular.js"></script> -->
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="app.js"></script>
+  <script src="routes/brothers/brotherController.js"></script>
+  <script src="routes/events/eventController.js"></script>
+  <script src="routes/vanTracker/vanController.js"></script>
+  <script src="routes/vanRequest/requestController.js"></script>
+  <script src="routes/driving/drivingController.js"></script>
+  <script src="routes/coordinate/coordinateController.js"></script>
+  <script src="routes/me/meController.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/directives.js"></script>
+</body>
+</html>
